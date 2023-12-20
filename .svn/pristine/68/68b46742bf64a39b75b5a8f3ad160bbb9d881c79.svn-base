@@ -1,0 +1,5 @@
+package kr.happyjob.study.supcus.dao;
+
+public interface SupCusOrderHmDao {
+
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : Mapper와 연결된 dao의 Root 입력 / ERROR 많이 발생하니 유의할 것 -->
+<mapper namespace="kr.happyjob.study.delcus.dao.DelCusDao">
+</mapper>
+
+ 

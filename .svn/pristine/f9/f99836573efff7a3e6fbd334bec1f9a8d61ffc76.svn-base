@@ -1,0 +1,12 @@
+package kr.happyjob.study.admstd.service;
+
+import java.util.List;
+import java.util.Map;
+
+import kr.happyjob.study.admstd.model.AdmstdUserInfoModel;
+
+public interface AdmstdUserInfoService {
+	
+	public List<AdmstdUserInfoModel> listUsers(Map<String, Object> map) throws Exception;
+
+}

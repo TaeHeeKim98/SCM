@@ -1,0 +1,55 @@
+package kr.happyjob.study.delcus.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.happyjob.study.admstd.service.AdmstdUserInfoService;
+import kr.happyjob.study.delcus.model.DelCusModel;
+import kr.happyjob.study.delcus.service.DelCusService;
+
+@Controller
+@RequestMapping("/delcus/")
+public class DelCusController {
+	
+	@Autowired
+	DelCusService delCusService;
+
+	// Set logger
+	private final Logger logger = LogManager.getLogger(this.getClass());
+
+	// Get class name for logger
+	private final String className = this.getClass().toString();
+	
+	@RequestMapping("delcusDirection.do")
+	public String admstdUserInfo() throws Exception {
+		logger.info("Start " + className + ".admstdUserInfo");
+		logger.info("End " + className + ".admstdUserInfo");
+		return "delcus/delcusDirection";
+	}
+	
+	// 1. Delivery 리스트 조회
+	@RequestMapping("delList.do")
+	public List<DelCusModel> delList(Map<String, Object> map) throws Exception {
+		logger.info("Start " + className + ".delList");
+		delCusService.delList(map);
+		logger.info("End " + className + ".delList");
+		return null;
+	}
+		
+	// 2. Delivery 단 건 조회
+	@RequestMapping("delSelectOne.do")
+	public List<DelCusModel> delSelectOne(int coNo) throws Exception {
+		logger.info("Start " + className + ".delSelectOne");
+		delCusService.delSelectOne(coNo);
+		logger.info("Start " + className + ".delSelectOne");
+		return null;
+	}
+		
+	               
+}

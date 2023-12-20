@@ -1,0 +1,84 @@
+<!-- Encording -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!-- JSTL 코어(변수 지원, 흐름 제어, URL 처리) 사용으로 인한 tag Library 지정 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- tbody(table Body)관련 JSP -->
+
+<!-- Controller 명 : AdmstdUserInfoController -->
+<!-- Method 명 : public String listUsers(Model model, @RequestParam Map<String,Object> map) throws Exception -->
+
+		<!-- 1. totalCnt(현재페이지)가 0일 경우 "유저가 존재하지 않습니다." 출력 -->
+		<c:if test="${totalCnt eq 0}">
+			<tr>
+				<!-- colspan : 열의 개수  -->
+				<td colspan="6">유저가 존재하지 않습니다.</td>
+			</tr>
+		</c:if>
+		
+		
+		<!-- 1. totalCnt(현재페이지)가 0 초과일 경우  -->
+		<c:if test="${totalCnt > 0 }">
+			
+			<!-- c:set : 컨트롤러 Model로부터 받아옴 // model.addAttribute -->
+			<c:set var="nRow" value="${pageSize*(currentPage-1)}" />
+			
+			<!-- Controller에서 model에 담은 값의 이름이 list. 변수명 자체도 list로 기재함 -->
+			<c:forEach items="${list}" var="list">
+				<tr>
+					<!-- loginID 출력 -->
+					<td>${list.loginID}</td>
+					
+					<!-- [회사명] -->
+					<!-- 데이터가 없을경우 : 내부직원일 경우-->
+					<c:if test="${com_name eq null and com_name.isEmpty()}">
+						<td></td>
+						<td></td>
+						<td></td>
+					</c:if>
+					<!-- [회사명] -->
+					<!-- 데이터가 있을 경우 : 기업고객일 경우-->
+					<c:if test="${com_name ne null and !com_name.isEmpty()}">
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.user_company}</a></td> <!-- 회사명 -->
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.chaCD_name}</a></td>
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.name}</a></td>
+						
+						<td><a href="javascript:userModal('${list.loginID}');">${list.com_name}</td>
+						<td></td>
+						<td></td>
+					</c:if>
+					
+					
+					<td>${list.divCD_name}
+					<c:set var = "company_name" value ="${list.user_company}"/>
+					</td>
+					<td>${list.loginID}</td>
+					<!-- 회사명이 있을경우 -->
+					<c:if test="${company_name ne null and !company_name.isEmpty()}">
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.user_company}</a></td> <!-- 회사명 -->
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.chaCD_name}</a></td> <!-- 이름 -->
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.name}</a></td> <!-- 담당업무 -->
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.name}</a></td> <!-- 담당자명 -->
+					</c:if>
+					<!-- 회사명이 없을경우 -->
+					<c:if test="${company_name eq null or company_name.isEmpty()}">
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.name}</a></td>
+						<td><a href="javascript:fUserModal('${list.loginID}');">${list.chaCD_name}</a></td>
+					<td></td>
+					</c:if>
+					
+					<!-- 공통출력 : 연락처 -->
+					<td>${list.user_tel1} - ${list.user_tel2} - ${list.user_tel3}</td>
+					<td>${list.delCD_name}</td>
+		
+					<!-- List에 있는 js 함수 호출가능 이거 그대로 가지고 가기 때문에 !!  -->
+				</tr>
+				<!-- 
+						 <c:set var="nRow" value="${nRow + 1}" />  -->
+			</c:forEach>
+										
+		</c:if>
+		
+		
+		<input type="hidden" id="totalCnt" value="${totalCnt}">
+		<!-- 이거 중간에 있으면 table 안먹힘  -->

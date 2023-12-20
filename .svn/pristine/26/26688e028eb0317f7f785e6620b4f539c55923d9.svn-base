@@ -1,0 +1,100 @@
+<!-- Directive 선언 -->
+<!-- page : jsp페이지에 대한 정보, 사용문자, 문자타입이나 정보, 에러메세지 작성 -->
+<!-- tag/lib : jsp에서 사용할 태그 라이브러리 지정 -->
+<!-- include : jsp페이지에서 특정 부분에 다른 jsp를 포함시킬 때 사용 -->
+
+<!-- Encording -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!-- JSTL 코어(변수 지원, 흐름 제어, URL 처리) 사용으로 인한 tag Library 지정 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSTL 함수 사용으로 인한 tag Library 지정 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- JSTL 날짜 형식 사용으로 인한 fmt 사용-->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+<!DOCTYPE html>
+<html>
+
+<!-- Head 영역 시작 -->
+<head>
+<title> 기업고객/직원정보 관리  </title>
+
+<!-- common_include.jsp 삽입 -->
+<jsp:include page="/WEB-INF/view/common/common_include.jsp"></jsp:include>
+
+<!-- [daumPost API]우편번호 조회 사용으로 인한 script 삽입-->
+<script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" charset="utf-8" src="${CTX_PATH}/js/popFindZipCode.js"></script>
+
+<!-- Session사용 userType이 A일경우 redirect처리 -->
+<!--
+	<c:if test="${sessionScope.userType ne 'A'}">
+	    <c:redirect url="/dashboard/dashboard.do"/>
+	</c:if>
+ -->
+<script type="text/javascript">
+</script>
+
+<style>
+</style>
+
+</head>
+<!-- Head 영역 종료 -->
+
+<!-- Body 영역 시작 -->
+<body>
+	<form id="myForm">
+		<!-- 모달 배경 -->
+		<div id="mask"></div>
+		<div id="wrap_area">
+
+         <!-- 컨텐츠 영역 -->
+         <div id="container">
+            <ul>
+               <li class="lnb">
+                  <!-- lnb 영역 --> 
+                  <jsp:include page="/WEB-INF/view/common/lnbMenu.jsp"></jsp:include> <!--// lnb 영역 -->
+               </li>
+               <li class="contents">
+                  <!-- contents -->
+                  <h3 class="hidden">contents 영역</h3> <!-- content -->
+
+                  <div class="content" style="margin-bottom: 20px;">
+
+                     <p class="Location">
+                        <a href="../dashboard/dashboard.do" class="btn_set home">메인으로</a>
+                        <span class="btn_nav bold">기준정보</span> 
+                        <span class="btn_nav bold">기업고객/직원정보 관리</span> 
+                        <a href="../dashboard/dashboard.do" class="btn_set refresh">새로고침</a>
+                     </p>
+                     <div>
+                        <p class="conTitle" style="margin-bottom: 1%;">
+                           <span>기업고객/직원정보 관리</span> 
+                           <!-- <span class="fr">X</span> -->
+                        </p>
+                     </div>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+
+
+
+
+      <!-- 모달팝업 -->
+      <div id="notice" class="layerPop layerType2" style="width: 600px;">
+         
+      </div>
+
+
+      <div id="layer2" class="layerPop layerType2" style="width: 600px;">
+         
+      </div>
+
+   </form>
+
+</body>
+</html>

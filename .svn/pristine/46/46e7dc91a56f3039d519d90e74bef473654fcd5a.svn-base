@@ -1,0 +1,36 @@
+package kr.happyjob.study.supcus.controller;
+
+
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
+
+@Controller
+@RequestMapping("/supcus/")
+public class SupCusOrderHmController {
+	
+//	@Autowired
+//	SupCupOrderHmService supcuporderhmService;
+	
+	// Set logger
+	private final Logger logger = LogManager.getLogger(this.getClass());
+	
+	
+	@RequestMapping("/SupCusOrderHm")
+	public String test() throws Exception {
+		
+		
+		return "supcus/SupCusOrderHm";
+
+	}
+	
+	
+
+}

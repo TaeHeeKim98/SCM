@@ -1,0 +1,11 @@
+package kr.happyjob.study.delcus.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class DelCusServiceImpl implements DelCusService {
+	   
+	//@Autowired
+	//DelCusDao delCusDao;
+
+}

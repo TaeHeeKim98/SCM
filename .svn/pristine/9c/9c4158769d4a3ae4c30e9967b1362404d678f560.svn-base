@@ -1,0 +1,5 @@
+package kr.happyjob.study.admtrd.dao;
+
+public class AdmstdAppReturnDao {
+
+}

@@ -1,0 +1,5 @@
+package kr.happyjob.study.admtrd.service;
+
+public class AdmstdAppReturnService {
+
+}

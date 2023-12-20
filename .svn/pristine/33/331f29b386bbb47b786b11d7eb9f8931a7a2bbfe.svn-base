@@ -1,0 +1,83 @@
+package kr.happyjob.study.supcus.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
+import kr.happyjob.study.supcus.model.SupCusOrderHmDetailModel;
+import kr.happyjob.study.supcus.model.SupCusOrderHmModel;
+import kr.happyjob.study.supcus.service.SupCusOrderHmService;
+
+@Controller
+@RequestMapping("/supcus/")
+public class SupCusOrderHmController {
+
+	@Autowired
+	SupCusOrderHmService supcusorderhmService;
+
+	// Set logger
+	private final Logger logger = LogManager.getLogger(this.getClass());
+
+	
+	@RequestMapping("/SupCusOrderHm.do")
+	public String SupCusOrderHm(@RequestParam Map<String, Object> paramMap, Model model) {
+		
+	return "supcus/SupCusOrderHm";
+	}
+	
+	@RequestMapping("/SupCusOrderHmList.do")
+	public String test(@RequestParam Map<String, Object> paramMap, Model model) throws Exception {
+
+		List<SupCusOrderHmModel> list = supcusorderhmService.selectProductInfo(paramMap);
+
+		model.addAttribute("list", list);
+
+		
+		System.out.println("리스트다다다다다" + list);
+		int clickpagenum = Integer.parseInt(String.valueOf(paramMap.get("clickpagenum")));
+
+		
+		int pagesize = Integer.parseInt(String.valueOf(paramMap.get("pagesize")));
+		int startnum = (clickpagenum - 1) * pagesize;
+
+		paramMap.put("startnum", startnum);
+		paramMap.put("pagesize", pagesize);
+		
+		
+		int searchlistcnt = supcusorderhmService.searchlistcnt(paramMap);
+		
+		model.addAttribute("searchlistcnt", searchlistcnt);
+		logger.info("   - paramMap : " + paramMap);
+		return "supcus/SupCusOrderHmList";
+
+	}
+	
+	
+	@RequestMapping("/selectorderlist.do")
+	@ResponseBody
+	public Map<String,Object> selectorderlist(@RequestParam Map<String, Object> paramMap, Model model) throws Exception{
+		
+		
+		logger.info("orderDepositProcessingSelect.do 컨트롤러 => 구매담당자_기업고객_주문내역 단건 조회");		
+
+		Map<String, Object> resultMap = new HashMap<>();
+				
+		//구매번호 별 주문 내역 단건 조회 정보
+		SupCusOrderHmDetailModel SupCusOrderHmDetailModel = supcusorderhmService.selectorderlist(paramMap);
+		resultMap.put("SupCusOrderHmDetailModel", SupCusOrderHmDetailModel);	
+		
+		
+		return resultMap;
+	}
+
+}

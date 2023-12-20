@@ -1,0 +1,69 @@
+package kr.happyjob.study.delcus.model;
+
+public class DelCusModel {
+	
+	// 배송번호
+	private int delNo;
+	// 주문번호
+	private int coNo;
+	// 창고번호
+	private int strNo;
+	// 제품번호
+	private int prodNo;
+	// 수주개수
+	private int prodCnt;
+	// 배송상태 VARCHAR(20) - waiting, loading, complete - GROUP_CODE 확인
+	private String delSts;
+	// 배송완료 여부
+	private int delDsts;
+		
+	public int getDelNo() {
+		return delNo;
+	}
+	public void setDelNo(int delNo) {
+		this.delNo = delNo;
+	}
+	public int getCoNo() {
+		return coNo;
+	}
+	public void setCoNo(int coNo) {
+		this.coNo = coNo;
+	}
+	public int getStrNo() {
+		return strNo;
+	}
+	public void setStrNo(int strNo) {
+		this.strNo = strNo;
+	}
+	public int getProdNo() {
+		return prodNo;
+	}
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
+	}
+	public int getProdCnt() {
+		return prodCnt;
+	}
+	public void setProdCnt(int prodCnt) {
+		this.prodCnt = prodCnt;
+	}
+	public String getDelSts() {
+		return delSts;
+	}
+	public void setDelSts(String delSts) {
+		this.delSts = delSts;
+	}
+	public int getDelDsts() {
+		return delDsts;
+	}
+	public void setDelDsts(int delDsts) {
+		this.delDsts = delDsts;
+	}
+	
+	@Override
+	public String toString() {
+		return "DelCusModel [delNo=" + delNo + ", coNo=" + coNo + ", strNo=" + strNo + ", prodNo=" + prodNo
+				+ ", prodCnt=" + prodCnt + ", delSts=" + delSts + ", delDsts=" + delDsts + "]";
+	}
+	
+}

@@ -1,0 +1,10 @@
+package kr.happyjob.study.supcus.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public interface SupCusOrderHmServiceImpl extends SupCusOrderHmService {
+
+	
+	
+}

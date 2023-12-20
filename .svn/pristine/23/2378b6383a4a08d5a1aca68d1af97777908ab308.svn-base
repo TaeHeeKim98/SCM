@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : Mapper와 연결된 dao의 Root 입력 / ERROR 많이 발생하니 유의할 것 -->
+<mapper namespace="kr.happyjob.study.delcus.dao.DelCusDao">
+
+	<!-- [SELECT] 배송지시서 리스트 출력 -->
+	<select id="delList" resultType="kr.happyjob.study.delcus.model.DelCusModel">
+		SELECT  dl.delNo
+		      , ui.name 
+		      , ui.loginID 
+		      , co.coDate
+		      , co.coDel
+		      , sr.strMnm 
+		      , sr.strName
+		      , dl.delSts
+		  FROM tb_delList dl 
+		  LEFT JOIN tb_cOrder co ON dl.coNo = co.coNo
+		  LEFT JOIN tb_userinfo ui ON co.loginID = ui.loginID
+		  LEFT JOIN tb_storage sr ON dl.strNo = sr.strNo
+	</select>
+	
+	<!-- [SELECT] 배송지시서 단 건 출력 -->
+	<select id="delSelectOne" resultType="kr.happyjob.study.delcus.model.DelCusModel">
+		SELECT  co.coNo 
+		      , ui.name 
+		      , CONCAT(ui.addr,' ',ui.addrDt) 
+		      , pd.prodName 
+		      , co.coCnt 
+		      , st.strNo 
+		      , st.strName 
+		      , CONCAT(st.strAddr,' ',st.strDt) 
+		  FROM tb_cOrder co
+		    LEFT JOIN tb_userinfo ui ON ui.loginID = co.loginID
+		    LEFT JOIN tb_product pd ON co.coNo = pd.prodNo
+		    LEFT JOIN tb_storage st ON co.coNo = st.strNo
+		  WHERE co.coNo = #{coNo}
+	</select>
+</mapper>

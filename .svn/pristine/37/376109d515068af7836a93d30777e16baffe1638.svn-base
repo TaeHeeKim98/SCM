@@ -1,0 +1,16 @@
+package kr.happyjob.study.admtrd.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import kr.happyjob.study.admtrd.model.AdmstdOrderDetailsVo;
+
+public interface AdmstdOrderDetailsDao {
+
+	//admin 수주내역 list 가져오기
+	public List<AdmstdOrderDetailsVo> getOderList(Map<String, Object> paramMap);
+	
+	//클릭한 배송지시서 단건 조회
+	public AdmstdOrderDetailsVo getshipping(Map<String, Object> paramMap);
+
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : Mapper와 연결된 dao의 Root 입력 / ERROR 많이 발생하니 유의할 것 -->
+<mapper namespace="kr.happyjob.study.admstd.dao.AdmstdUserInfoDao">
+
+	<!-- 회원 List 출력 -->
+	<select id="listUsers" resultType="kr.happyjob.study.admstd.model.AdmstdUserInfoModel">
+		SELECT  
+				dc.detail_name AS 구분
+		      , IFNULL(ui.com_name, ui.name) AS 회사명or이름
+		      , ui.com_name AS 회사명
+		      , dc2.detail_name AS 담당업무
+			  , ui.name AS 담당자명
+			  , ui.hp AS 연락처
+		FROM  
+			tb_userinfo ui
+		          LEFT JOIN (SELECT dc.group_code, dc.detail_code, dc.detail_name FROM tb_detail_code dc WHERE dc.group_code = 'divCD') dc
+		          		ON ui.divCd = dc.detail_code
+		          LEFT JOIN (SELECT dc.group_code, dc.detail_code, dc.detail_name FROM tb_detail_code dc WHERE group_code = 'chaCD') dc2
+		          		ON ui.user_type = dc2.detail_code;
+	</select>
+	
+	<!-- 회원 단 건 출력 -->
+	
+	<!-- 회원 추가 -->
+	
+	<!-- 회원 수정 -->
+	
+	<!-- 회원 삭제 -->
+	
+	<!-- [확인요망] 회원 복구 -->
+
+</mapper>
+ 

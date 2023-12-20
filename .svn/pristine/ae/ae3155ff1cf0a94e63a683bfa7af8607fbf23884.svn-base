@@ -1,0 +1,46 @@
+
+	$(function() {
+	
+		delList();
+		fButtonClickEvent();	
+		
+	});
+
+	// Button Click Event
+	function fButtonClickEvent() {
+		$('a[name=btn]').click(function(e) {
+			e.preventDefault(); // 기본 클릭 동작을 막아주는 역할을 함
+			var btnId = $(this).attr('id');
+		});
+	}
+
+	function delList(currentPage) {
+		currentPage = currentPage || 1;
+		var param = {
+			searchKey : $("#searchKey").val(), 		// searchkey : 검색시 select박스
+			searchInput : $("#searchInput").val(), 	// sInput : 검색시 input text박스	
+			pageNavi : $("#pageNavi").val(), 		// 기본 pagingNav = 1
+			currentPage : currentPage,
+			pageSize : pageSize
+		};
+		var callBack = function(returnData) {
+			detailDelList(returnData, currentPage);
+		}
+		callAjax("/delcus/delList.do", "post", "text", true, param, callBack);
+	}
+	
+	// 2. delList에서 불러온 detailDelList
+	function detailDelList(returnData, currentPage) {
+		$("#deliveryList").empty().append(returnData);
+		currentPage = currentPage || 1;
+		var totalCount = $("#totalCount").val();
+		var paginationHtml = getPaginationHtml(currentPage, totalCount,	pageSize, pageBlockSize, 'delList');		
+		$("#pagingNavi").empty().append(paginationHtml);
+		$("#currentPage").val(currentPage);
+	}
+	 
+	// 3. 단건조회 창 열기위한 모달 연동
+	function fModalSelectOne(coNo) {
+		alert("fModalSelectOne :"+coNo)
+		gfModalpop("#deli");
+	}

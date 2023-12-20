@@ -1,0 +1,77 @@
+package kr.happyjob.study.supcus.model;
+
+
+
+public class SupCusOrderHmModel {
+	
+	private int coNo;
+	private String loginID;
+	private String coDate;
+	private String coDpsts;
+	
+	
+	public SupCusOrderHmModel() {
+		super();
+	}
+
+
+	public SupCusOrderHmModel(int coNo, String loginID, String coDate, String coDpsts) {
+		super();
+		this.coNo = coNo;
+		this.loginID = loginID;
+		this.coDate = coDate;
+		this.coDpsts = coDpsts;
+	}
+
+
+	public int getCoNo() {
+		return coNo;
+	}
+
+
+	public void setCoNo(int coNo) {
+		this.coNo = coNo;
+	}
+
+
+	public String getLoginID() {
+		return loginID;
+	}
+
+
+	public void setLoginID(String loginID) {
+		this.loginID = loginID;
+	}
+
+
+	public String getCoDate() {
+		return coDate;
+	}
+
+
+	public void setCoDate(String coDate) {
+		this.coDate = coDate;
+	}
+
+
+	public String getCoDpsts() {
+		return coDpsts;
+	}
+
+
+	public void setCoDpsts(String coDpsts) {
+		this.coDpsts = coDpsts;
+	}
+
+
+	@Override
+	public String toString() {
+		return "SupCusOrderHmModel [coNo=" + coNo + ", loginID=" + loginID + ", coDate=" + coDate + ", coDpsts="
+				+ coDpsts + "]";
+	}
+	
+	
+	
+	
+
+}
